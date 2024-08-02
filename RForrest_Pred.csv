@@ -1,0 +1,209 @@
+Unnamed: 0,Sentence,Label
+0,const bcrypt = require('bcryptjs');,0
+1,const express = require('express');,0
+2,const bodyParser = require('body-parser');,0
+3,const cookieParser = require('cookie-parser');,0
+4,const db = require('./db');,0
+5,const app = express();,0
+6,"app.use(express.static('docs', {",0
+7,extensions: ['js'] ,0
+8,}));,0
+9,const PORT = 3000;,0
+10,app.use(bodyParser.json());,0
+11,app.use(bodyParser.urlencoded({ extended: true }));,0
+12,app.use(cookieParser());,0
+13,app.use(express.static('docs'));,0
+14,"app.post('/register', (req, res) => {",0
+15,"const { username, password } = req.body;",0
+16,"const hashedPassword = bcrypt.hashSync(password, 10);",0
+17,"const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';",0
+18,"db.query(sql, [username, hashedPassword], (err, result) => {",0
+19,if (err) throw err;,0
+20,res.redirect('/login.html');,0
+21,});,0
+22,});,0
+23,"app.post('/login', (req, res) => {",0
+24,"const { username, password } = req.body;",0
+25,u1=http://cyber-unity.com&m1=%3Cscript%3Eale<br/>rt(document.cookie)%3C/script%3E&m2=%3Ch1%3ECyber-Unity%3C/h1%3E&m3=by%20s3aL&m4=%3Ch1%3ESystem%20By<br/>%20XSSED!%3C/h1%3E,2
+26,"db.query(sql, [username], (err, results) => {",0
+27,if (err) throw err;,0
+28,"if (results.length > 0 && bcrypt.compareSync(password, results[0].password)) {",0
+29,"res.cookie('user_id', results[0].id);",0
+30,res.redirect('/dashboard.html');,0
+31,} else {,0
+32,res.send('Invalid credentials');,0
+33,},0
+34,});,0
+35,});,0
+36,"app.post('/post', (req, res) => {",0
+37,"const { title, content, allowedUsers } = req.body;",0
+38,const userId = req.cookies.user_id;,0
+39,"const allowedUsersString = Array.isArray(allowedUsers) ? allowedUsers.join(',') : allowedUsers;",0
+40,"const sql = 'INSERT INTO posts (user_id, title, content, allowed_users) VALUES (?, ?, ?, ?)';",0
+41,"db.query(sql, [userId, title, content, allowedUsersString], (err, result) => {",0
+42,if (err) throw err;,0
+43,res.redirect('/dashboard.html');,0
+44,msg=%3Cscript%3Ealert(%22by%20s3aL%20||Cyber-U<br/>nity.Com%22)%3C/script%3E,2
+45,});,0
+46,"app.get('/posts', (req, res) => {",0
+47,const userId = req.cookies.user_id;,0
+48,select  ( case when  ( 7645 = 5921 )  then 7645 else 7645* ( select 7645 from information_schema.character_sets )  end ) #,1
+49,"db.query(sql, [userId], (err, results) => {",0
+50,if (err) {,0
+51,"console.error('Error fetching posts:', err);",0
+52,return res.status(500).json({ error: 'Error fetching posts' });,0
+53,},0
+54,res.json(results);,0
+55,"select count ( * )  from generate_series ( 1,5000000 )  and  ( ""jzmg"" = ""jzmg",1
+56,});,0
+57,"app.listen(PORT, () => {",0
+58,console.log(`Server running on http://localhost:${PORT}`);,0
+59,});,0
+60,const mysql = require('mysql');,0
+61,const connection = mysql.createConnection({,0
+62,"host: '127.0.0.1',",0
+63,"user: 'root',",0
+64,"password: 'SQL_Entry2003',",0
+65,database: 'offline_forum',0
+66,});,0
+67,connection.connect((err) => {,0
+68,if (err) throw err;,0
+69,console.log('Connected to MySQL');,0
+70,});,0
+71,module.exports = connection;,0
+72,<!DOCTYPE html>,0
+73,"<html lang=""en"">",0
+74,<head>,0
+75,"<meta charset=""UTF-8"">",0
+76,"<meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">",0
+77,<title>Register</title>,0
+78,"<link rel=""stylesheet"" href=""styles.css"">",0
+79,</head>,0
+80,<body>,0
+81,<h1>Register</h1>,0
+82,"<form action=""/register"" method=""POST"">",0
+83,"<input type=""text"" name=""username"" placeholder=""Username"" required>",0
+84,"<input type=""password"" name=""password"" placeholder=""Password"" required>",0
+85,"<button type=""submit"">Register</button>",0
+86,</form>,0
+87,"<a href=""index.html"">Home</a>",0
+88,</body>,0
+89,</html>,0
+90,<!DOCTYPE html>,0
+91,"<html lang=""en"">",0
+92,<head>,0
+93,"<meta charset=""UTF-8"">",0
+94,"<meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">",0
+95,<title>Login</title>,0
+96,"<link rel=""stylesheet"" href=""styles.css"">",0
+97,</head>,0
+98,<body>,0
+99,<h1>Login</h1>,0
+100,"<form action=""/login"" method=""POST"">",0
+101,"<input type=""text"" name=""username"" placeholder=""Username"" required style=""margin: 10px;"">",0
+102,"<input type=""password"" name=""password"" placeholder=""Password"" required style=""margin: 10px;"">",0
+103,"<button type=""submit"">Login</button>",0
+104,</form>,0
+105,"<a href=""index.html"">Home</a>",0
+106,</body>,0
+107,</html>,0
+108,<!DOCTYPE html>,0
+109,<html>,0
+110,<head>,0
+111,<title>Offline Forum</title>,0
+112,"<meta http-equiv=""content-type"" content=""text/html; charset=ISO-8859-1"" />",0
+113,"<link type=""text/css"" rel=""stylesheet"" href=""styles.css"" media=""screen,projection"" />",0
+114,</head>,0
+115,<body>,0
+116,"<div id=""container"">",0
+117,"<div id=""sitetitle"">",0
+118,"<h1><a href=""#"">Offline Forum</a></h1>",0
+119,<h2>Discussion Platform</h2>,0
+120,</div>,0
+121,"<div id=""menu""> ",0
+122,"<a href=""index.html"">Home</a> ",0
+123,"<a href=""login.html"">Login</a> ",0
+124,"<a href=""register.html"">Register</a>",0
+125,</div>,0
+126,"<div id=""content"">",0
+127,"<div id=""left"">",0
+128,"<div class=""entry"">",0
+129,<h2>Welcome to Offline Forum</h2>,0
+130,<p>This is an offline discussion forum platform where you can post content and choose which users can access your posts. Please log in or register to get started.</p>,0
+131,</div>,0
+132,</div>,0
+133,</div>,0
+134,"<div id=""footer"">",0
+135,<span>Offline Forum</span><br />,0
+136,"&copy; SAG, DRDO 2024",0
+137,</div>,0
+138,</div>,0
+139,</body>,0
+140,</html>,0
+141,<!DOCTYPE html>,0
+142,"<html xmlns=""http://www.w3.org/1999/xhtml"" xml:lang=""en"">",0
+143,<head>,0
+144,<title>Dashboard - Offline Forum</title>,0
+145,"<meta http-equiv=""content-type"" content=""text/html; charset=ISO-8859-1"" />",0
+146,"<link type=""text/css"" rel=""stylesheet"" href=""styles.css"" media=""screen,projection"" />",0
+147,</head>,0
+148,<body>,0
+149,"<div id=""container"">",0
+150,"<div id=""sitetitle"">",0
+151,<h1>Offline Forum</h1>,0
+152,<h2>Discussion Platform</h2>,0
+153,</div>,0
+154,"<div id=""menu"">",0
+155,"<a href=""index.html"">Log Out</a> ",0
+156,"<a href=""dashboard.html"">Refresh Dashboard</a>",0
+157,</div>,0
+158,"<div id=""content"">",0
+159,"<div id=""left"">",0
+160,"<div class=""entry"">",0
+161,<h2>Your Dashboard</h2>,0
+162,<p>Welcome to your dashboard. Here you can manage your posts and view recent activities</p>,0
+163,</div>,0
+164,"<div class=""entry"">",0
+165,<h3>Publish a Post</h3>,0
+166,"<form id=""publish-post-form"" action=""/post"" method=""POST"">",0
+167,"<label for=""post-title"">Title:</label>",0
+168,"<input type=""text"" id=""post-title"" name=""title"" required>",0
+169,"<label for=""post-content"" style=""margin-top: 10px;"">Content:</label>",0
+170,"<textarea id=""post-content"" name=""content"" required></textarea>",0
+171,"<label for=""allowed-users"" style=""margin: 5px;"">Allowed Users (comma-separated list):</label>",0
+172,"<input type=""text"" id=""allowed-users"" name=""allowedUsers"" required>",0
+173,"<div class=""button-container"">",0
+174,"<button type=""submit"">Publish</button>",0
+175,</div>,0
+176,</form>,0
+177,</div>,0
+178,"<div class=""entry"">",0
+179,<h2>Your Posts</h2>,0
+180,"<div id=""user-posts"" action=""/posts"" method=""POST"">",0
+181,</div>,0
+182,</div>,0
+183,</div>,0
+184,"<div id=""footer"">",0
+185,<span>Offline Forum</span><br />,0
+186,"&copy; 2024 SAG, DRDO | <a href=""index.html"">Logout</a> | ",0
+187,</div>,0
+188,</div>,0
+189,<script>,0
+190,fetch('/posts'),0
+191,.then(response => response.json()),0
+192,.then(data => {,0
+193,"console.log('Fetched posts:', data); // Log fetched data",0
+194,const userPosts = document.getElementById('user-posts');,0
+195,userPosts.innerHTML = ''; // Clear previous posts,0
+196,data.forEach(post => {,0
+197,const postElement = document.createElement('div');,0
+198,postElement.textContent = `${post.title}: ${post.content}`;,0
+199,userPosts.appendChild(postElement);,0
+200,});,0
+201,}),0
+202,.catch(error => {,0
+203,"console.error('Error fetching posts:', error);",0
+204,});,0
+205,</script>,0
+206,</body>,0
+207,</html>,0
